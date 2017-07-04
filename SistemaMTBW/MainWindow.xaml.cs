@@ -33,7 +33,7 @@ namespace SistemaMTBW
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Esta aplicación pone el sistema de MT de Blanco y Negro que simplemente hace que no se gasten las MT cuando se usen.\n\nBug conocido: solo se gastan si se cancela la animación de aprender la MT\n\nDesarrollado por Pikachu240 investigado por FBI y BLAx501! ","Sobre la App");
+            MessageBox.Show("Esta aplicación pone el sistema de MT de Blanco y Negro que simplemente hace que no se gasten las MT cuando se usen.\n\nDesarrollado por Pikachu240 investigado por GoGoJJTech , FBI , Koakuma! ","Sobre la App");
         }
 
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)
