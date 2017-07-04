@@ -25,7 +25,7 @@ namespace SistemaMTBW
     /// </summary>
     public partial class MainWindow : Window
     {
-        RomGBA rom;
+        RomGba rom;
         public MainWindow()
         {
             InitializeComponent();
@@ -44,16 +44,16 @@ namespace SistemaMTBW
             {
                 if (opnRom.ShowDialog().GetValueOrDefault())
                 {
-                    rom = new RomGBA(opnRom.FileName);
+                    rom = new RomGba(opnRom.FileName);
                     PonTexto();
                     btnPonerOQuitar.IsEnabled = true;
-                    switch(Edicion.GetEdicion(rom).AbreviacionRom)
+                    switch(EdicionPokemon.GetEdicionPokemon(rom).AbreviacionRom)
                     {
-                        case Edicion.ABREVIACIONESMERALDA:imgDecoración.SetImage(Imagenes.PokeballEsmeralda);break;
-                        case Edicion.ABREVIACIONROJOFUEGO: imgDecoración.SetImage(Imagenes.PokeballRojoFuego); break;
-                        case Edicion.ABREVIACIONVERDEHOJA: imgDecoración.SetImage(Imagenes.PokeballVerdeHoja); break;
-                        case Edicion.ABREVIACIONRUBI: imgDecoración.SetImage(Imagenes.PokeballRuby); break;
-                        case Edicion.ABREVIACIONZAFIRO: imgDecoración.SetImage(Imagenes.PokeballZafiro); break;
+                        case AbreviacionCanon.BPE:imgDecoración.SetImage(Imagenes.PokeballEsmeralda);break;
+                        case AbreviacionCanon.BPR: imgDecoración.SetImage(Imagenes.PokeballRojoFuego); break;
+                        case AbreviacionCanon.BPG: imgDecoración.SetImage(Imagenes.PokeballVerdeHoja); break;
+                        case AbreviacionCanon.AXV: imgDecoración.SetImage(Imagenes.PokeballRuby); break;
+                        case AbreviacionCanon.AXP: imgDecoración.SetImage(Imagenes.PokeballZafiro); break;
                     }
                 }
                 else if(rom!=null)
@@ -74,7 +74,7 @@ namespace SistemaMTBW
 
         private void PonTexto()
         {
-           if(PokemonGBAFrameWork.SistemaMTBW.EstaActivado(rom, Edicion.GetEdicion(rom), CompilacionRom.GetCompilacion(rom)))
+           if(PokemonGBAFrameWork.SistemaMTBW.EstaActivado(rom, EdicionPokemon.GetEdicionPokemon(rom), Compilacion.GetCompilacion(rom,EdicionPokemon.GetEdicionPokemon(rom))))
             {
                 btnPonerOQuitar.Content = "Volver al sistema anterior";
             }
@@ -86,18 +86,18 @@ namespace SistemaMTBW
 
         private void btnPonerOQuitar_Click(object sender, RoutedEventArgs e)
         {
-            if (PokemonGBAFrameWork.SistemaMTBW.EstaActivado(rom, Edicion.GetEdicion(rom), CompilacionRom.GetCompilacion(rom)))
+        	if (PokemonGBAFrameWork.SistemaMTBW.EstaActivado(rom, EdicionPokemon.GetEdicionPokemon(rom), Compilacion.GetCompilacion(rom,EdicionPokemon.GetEdicionPokemon(rom))))
             {
-                PokemonGBAFrameWork.SistemaMTBW.Desactivar(rom, Edicion.GetEdicion(rom), CompilacionRom.GetCompilacion(rom));
+        	    	PokemonGBAFrameWork.SistemaMTBW.Desactivar(rom, EdicionPokemon.GetEdicionPokemon(rom), Compilacion.GetCompilacion(rom,EdicionPokemon.GetEdicionPokemon(rom)));
              
             }
             else
             {
-                PokemonGBAFrameWork.SistemaMTBW.Activar(rom, Edicion.GetEdicion(rom), CompilacionRom.GetCompilacion(rom));
+            	PokemonGBAFrameWork.SistemaMTBW.Activar(rom, EdicionPokemon.GetEdicionPokemon(rom), Compilacion.GetCompilacion(rom,EdicionPokemon.GetEdicionPokemon(rom)));
    
             }
             PonTexto();
-            rom.Guardar();
+            rom.Save();
         }
     }
 }
