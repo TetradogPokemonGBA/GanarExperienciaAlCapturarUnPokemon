@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SistemaMTBW"
         mc:Ignorable="d"
-        Title="Sistema MT Blanco y Negro" Height="154.674" Width="181.941" WindowStyle="ToolWindow" ResizeMode="CanMinimize">
+        Title="Sistema ganar experiencia al capturar un pokémon" Height="154.674" Width="181.941" WindowStyle="ToolWindow" ResizeMode="CanMinimize">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -21,6 +21,6 @@
             <MenuItem Header="Sobre" Click="MenuItem_Click"/>
         </Menu>
         <Image x:Name="imgDecoración" Grid.Row="1"/>
-        <Button x:Name="btnPonerOQuitar" Grid.Row="2" Content="Poner Sistema MT BW!" IsEnabled="False" Click="btnPonerOQuitar_Click"/>
+        <Button x:Name="btnPonerOQuitar" Grid.Row="2" Content="Poner Sistema nuevo" IsEnabled="False" Click="btnPonerOQuitar_Click"/>
     </Grid>
 </Window>

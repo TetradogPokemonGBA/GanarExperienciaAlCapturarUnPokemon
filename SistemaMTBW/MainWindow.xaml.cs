@@ -26,6 +26,8 @@ namespace SistemaMTBW
     public partial class MainWindow : Window
     {
         RomGba rom;
+        EdicionPokemon edicion;
+        Compilacion compilacion;
         public MainWindow()
         {
             InitializeComponent();
@@ -33,7 +35,8 @@ namespace SistemaMTBW
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Esta aplicación pone el sistema de MT de Blanco y Negro que simplemente hace que no se gasten las MT cuando se usen.\n\nDesarrollado por Pikachu240 investigado por GoGoJJTech , FBI , Koakuma! ","Sobre la App");
+        	if( MessageBox.Show("Esta aplicación pone el sistema de ganar experiencia al capturar un pokemon estilo pokemon X,Y.\n\nDesarrollado por Pikachu240(Wahackforo) tutorial Ismash y DoesntKnowHowToPlay (PokemonCommunity)\n\n Esta app esta bajo licencia GNU ¿Quieres ver el código fuente? ","Sobre la App",MessageBoxButton.YesNo,MessageBoxImage.Information)==MessageBoxResult.Yes)
+        		System.Diagnostics.Process.Start("https://github.com/TetradogPokemonGBA/GanarExperienciaAlCapturarUnPokemon");
         }
 
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)
@@ -45,6 +48,8 @@ namespace SistemaMTBW
                 if (opnRom.ShowDialog().GetValueOrDefault())
                 {
                     rom = new RomGba(opnRom.FileName);
+                    edicion=EdicionPokemon.GetEdicionPokemon(rom);
+                    compilacion=Compilacion.GetCompilacion(rom,edicion);
                     PonTexto();
                     btnPonerOQuitar.IsEnabled = true;
                     switch(EdicionPokemon.GetEdicionPokemon(rom).AbreviacionRom)
@@ -74,26 +79,26 @@ namespace SistemaMTBW
 
         private void PonTexto()
         {
-           if(PokemonGBAFrameWork.SistemaMTBW.EstaActivado(rom, EdicionPokemon.GetEdicionPokemon(rom), Compilacion.GetCompilacion(rom,EdicionPokemon.GetEdicionPokemon(rom))))
+        	if(PokemonGBAFrameWork.GanarExperienciaAlCapturarUnPokemon.EstaActivado(rom,edicion,compilacion))
             {
                 btnPonerOQuitar.Content = "Volver al sistema anterior";
             }
            else
             {
-                btnPonerOQuitar.Content = "Poner Sistema MT BW!";
+                btnPonerOQuitar.Content = "Poner Sistema nuevo";
             }
         }
 
         private void btnPonerOQuitar_Click(object sender, RoutedEventArgs e)
         {
-        	if (PokemonGBAFrameWork.SistemaMTBW.EstaActivado(rom, EdicionPokemon.GetEdicionPokemon(rom), Compilacion.GetCompilacion(rom,EdicionPokemon.GetEdicionPokemon(rom))))
+        	if (PokemonGBAFrameWork.GanarExperienciaAlCapturarUnPokemon.EstaActivado(rom, edicion,compilacion))
             {
-        	    	PokemonGBAFrameWork.SistemaMTBW.Desactivar(rom, EdicionPokemon.GetEdicionPokemon(rom), Compilacion.GetCompilacion(rom,EdicionPokemon.GetEdicionPokemon(rom)));
+        		PokemonGBAFrameWork.GanarExperienciaAlCapturarUnPokemon.Desactivar(rom,edicion,compilacion);
              
             }
             else
             {
-            	PokemonGBAFrameWork.SistemaMTBW.Activar(rom, EdicionPokemon.GetEdicionPokemon(rom), Compilacion.GetCompilacion(rom,EdicionPokemon.GetEdicionPokemon(rom)));
+            	PokemonGBAFrameWork.GanarExperienciaAlCapturarUnPokemon.Activar(rom,edicion,compilacion);
    
             }
             PonTexto();
