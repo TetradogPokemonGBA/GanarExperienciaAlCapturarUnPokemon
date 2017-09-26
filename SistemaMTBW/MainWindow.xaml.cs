@@ -35,7 +35,7 @@ namespace SistemaMTBW
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-        	if( MessageBox.Show("Esta aplicación pone el sistema de ganar experiencia al capturar un pokemon estilo pokemon X,Y.\n\nDesarrollado por Pikachu240(Wahackforo) tutorial Ismash y DoesntKnowHowToPlay (PokemonCommunity)\n\n Esta app esta bajo licencia GNU ¿Quieres ver el código fuente? ","Sobre la App",MessageBoxButton.YesNo,MessageBoxImage.Information)==MessageBoxResult.Yes)
+        	if( MessageBox.Show("Esta aplicación pone el sistema de ganar experiencia al capturar un pokemon estilo pokemon X,Y.\n\nDesarrollado por Pikachu240(Wahackforo)\n\n tutorial Ismash y DoesntKnowHowToPlay (PokemonCommunity)\n\n Esta app esta bajo licencia GNU ¿Quieres ver el código fuente? ","Sobre la App",MessageBoxButton.YesNo,MessageBoxImage.Information)==MessageBoxResult.Yes)
         		System.Diagnostics.Process.Start("https://github.com/TetradogPokemonGBA/GanarExperienciaAlCapturarUnPokemon");
         }
 
